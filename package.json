@@ -24,7 +24,10 @@
     "test": "jest --silent",
     "test:watch": "jest --silent --watch"
   },
-  "dependencies": {},
+  "dependencies": {
+    "dotenv": "16.0.1",
+    "octokit": "2.0.5"
+  },
   "devDependencies": {
     "@babel/cli": "7.18.10",
     "@babel/core": "7.18.10",
