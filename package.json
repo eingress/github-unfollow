@@ -1,0 +1,42 @@
+{
+  "name": "node-es2018-boilerplate",
+  "version": "0.1.0",
+  "description": "A minimalist Node.js ES2018 boilerplate with babel, eslint, jest, nodemon, and prettier.",
+  "repository": "https://github.com/eingress/node-es2018-boilerplate.git",
+  "author": "Scott Mathieson <scott@eingress.io>",
+  "license": "ISC",
+  "keywords": [
+    "babel",
+    "eslint",
+    "jest",
+    "node",
+    "prettier"
+  ],
+  "scripts": {
+    "build": "yarn build:clean && babel src -d dist",
+    "build:clean": "rimraf dist/*",
+    "build:watch": "yarn build -w",
+    "coverage": "jest --collectCoverageFrom=src/**/*.js --coverage",
+    "lint": "eslint './{,{__tests__,src}/**/}*.js' --fix --quiet",
+    "prestart": "yarn build",
+    "start": "node dist/index.js",
+    "start:dev": "nodemon src/index.js",
+    "test": "jest --silent",
+    "test:watch": "jest --silent --watch"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/cli": "7.18.10",
+    "@babel/core": "7.18.10",
+    "@babel/eslint-parser": "7.18.9",
+    "@babel/node": "7.18.10",
+    "@babel/preset-env": "7.18.10",
+    "eslint": "8.21.0",
+    "eslint-config-prettier": "8.5.0",
+    "eslint-plugin-prettier": "4.2.1",
+    "jest": "28.1.3",
+    "nodemon": "2.0.19",
+    "prettier": "2.7.1",
+    "rimraf": "3.0.2"
+  }
+}
