@@ -1,16 +1,14 @@
 {
-  "name": "node-es2018-boilerplate",
-  "version": "0.1.0",
-  "description": "A minimalist Node.js ES2018 boilerplate with babel, eslint, jest, nodemon, and prettier.",
-  "repository": "https://github.com/eingress/node-es2018-boilerplate.git",
+  "name": "github-unfollow",
+  "version": "1.0.0",
+  "description": "Unfollow github users that don't follow you back.",
+  "repository": "https://github.com/eingress/github-unfollow.git",
   "author": "Scott Mathieson <scott@eingress.io>",
   "license": "ISC",
   "keywords": [
-    "babel",
-    "eslint",
-    "jest",
+    "github",
     "node",
-    "prettier"
+    "unfollow"
   ],
   "scripts": {
     "build": "yarn build:clean && babel src -d dist",
@@ -25,8 +23,7 @@
     "test:watch": "jest --silent --watch"
   },
   "dependencies": {
-    "dotenv": "16.0.1",
-    "octokit": "2.0.5"
+    "dotenv": "16.0.1"
   },
   "devDependencies": {
     "@babel/cli": "7.18.10",
