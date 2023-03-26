@@ -28,6 +28,8 @@ jobs:
       -
         name: Read environment variables
         uses: falti/dotenv-action@v1.0.4
+        with:
+          path: docker.env
       -
         name: Build and push
         run: make release
