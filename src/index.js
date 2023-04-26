@@ -9,56 +9,62 @@ const FETCH_OPTIONS = {
 
 const arrayMergeLeft = (a, b) => a.filter((e) => !b.includes(e));
 
-const getFollowers = async (page = 1) => {
-  const res = await fetch(
-    `${GITHUB_API_URI}/user/followers?page=${page}&per_page=100`,
-    FETCH_OPTIONS,
-  );
+const getFollowers = async (page = 1, result = []) => {
+  try {
+    const response = await fetch(
+      `${GITHUB_API_URI}/user/followers?page=${page}&per_page=100`,
+      FETCH_OPTIONS,
+    );
 
-  if (res.ok) {
-    const data = await res.json();
-    data.map((user) => followers.push(user.login));
+    const data = await response.json();
+    data.map((user) => result.push(user.login));
 
-    let link = res.headers.get('link');
+    let link = response.headers.get('link');
     if (link.includes(`rel=\"next\"`)) {
-      await getFollowers(++page);
+      await getFollowers(++page, result);
     }
+  } catch (error) {
+    console.error(error);
   }
+  return result;
 };
 
-const getFollowing = async (page = 1) => {
-  const res = await fetch(
-    `${GITHUB_API_URI}/user/following?page=${page}&per_page=100`,
-    FETCH_OPTIONS,
-  );
+const getFollowing = async (page = 1, result = []) => {
+  try {
+    const res = await fetch(
+      `${GITHUB_API_URI}/user/following?page=${page}&per_page=100`,
+      FETCH_OPTIONS,
+    );
 
-  if (res.ok) {
     const data = await res.json();
-    data.map((user) => following.push(user.login));
+    data.map((user) => result.push(user.login));
 
     let link = res.headers.get('link');
     if (link.includes(`rel=\"next\"`)) {
-      await getFollowing(++page);
+      await getFollowing(++page, result);
     }
+  } catch (error) {
+    console.error(error);
   }
+  return result;
 };
 
 const deleteFollower = async (user) => {
-  console.log(`Unfollowing: ${user}…`);
-  await fetch(`${GITHUB_API_URI}/user/following/${user}`, {
-    ...FETCH_OPTIONS,
-    method: 'DELETE',
-  });
+  try {
+    console.log(`Unfollowing: ${user}…`);
+    await fetch(`${GITHUB_API_URI}/user/following/${user}`, {
+      ...FETCH_OPTIONS,
+      method: 'DELETE',
+    });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
-let followers = [];
-let following = [];
-let rejects = [];
-
 (async () => {
-  await getFollowers();
-  await getFollowing();
+  let followers = await getFollowers();
+  let following = await getFollowing();
+  let rejects = arrayMergeLeft(following, followers);
 
-  rejects = arrayMergeLeft(following, followers);
   rejects.map(async (reject) => await deleteFollower(reject));
 })();
