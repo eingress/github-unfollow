@@ -27,6 +27,7 @@ COPY --from=build /build/dist /app/dist
 RUN apk --update --no-cache add nodejs yarn && \
 	yarn install --production && \
 	yarn cache clean && \
+	rm -f package.json yarn.lock && \
 	apk del yarn
 
 ENTRYPOINT ["node"]
