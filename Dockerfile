@@ -14,7 +14,7 @@ COPY . .
 RUN yarn install && \
 	yarn build
 
-FROM alpine as release
+FROM alpine:$ALPINE_IMAGE_VERSION as release
 
 LABEL maintainer "Scott Mathieson <scott@eingress.io>"
 
