@@ -1,5 +1,14 @@
+.github/
 __tests__/
 dist/
 node_modules/
 
+.eslintignore
+.eslintrc.js
+.gitignore
+.prettierrc.js
+Makefile
 README.md
+example.env
+jest.config.js
+nodemon.json
