@@ -1,9 +1,8 @@
 import 'dotenv/config';
 
-const { exit, stderr, stdout } = process;
+const { env, exit, stderr, stdout } = process;
 
-const { GITHUB_API_TOKEN, GITHUB_API_URI = 'https://api.github.com' } =
-  process.env;
+const { GITHUB_API_TOKEN, GITHUB_API_URI = 'https://api.github.com' } = env;
 
 const FETCH_OPTIONS = {
   headers: { Authorization: `token ${GITHUB_API_TOKEN}` },
