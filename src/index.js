@@ -1,5 +1,7 @@
 import 'dotenv/config';
 
+const { exit, stderr, stdout } = process;
+
 const { GITHUB_API_TOKEN, GITHUB_API_URI = 'https://api.github.com' } =
   process.env;
 
@@ -24,7 +26,8 @@ const getFollowers = async (page = 1, result = []) => {
       await getFollowers(++page, result);
     }
   } catch (error) {
-    console.error(error);
+    stderr.write(`${error}\n`);
+    exit(1);
   }
   return result;
 };
@@ -44,20 +47,22 @@ const getFollowing = async (page = 1, result = []) => {
       await getFollowing(++page, result);
     }
   } catch (error) {
-    console.error(error);
+    stderr.write(`${error}\n`);
+    exit(1);
   }
   return result;
 };
 
 const deleteFollower = async (user) => {
   try {
-    console.log(`Unfollowing: ${user}…`);
     await fetch(`${GITHUB_API_URI}/user/following/${user}`, {
       ...FETCH_OPTIONS,
       method: 'DELETE',
     });
+    stdout.write(`Unfollowed: ${user}\n`);
   } catch (error) {
-    console.error(error);
+    stderr.write(`${error}\n`);
+    exit(1);
   }
 };
 
