@@ -68,7 +68,7 @@ const deleteFollower = async (user) => {
 (async () => {
   let followers = await getFollowers();
   let following = await getFollowing();
-  let rejects = arrayMergeLeft(following, followers);
+  let deletable = arrayMergeLeft(following, followers);
 
-  rejects.map(async (reject) => await deleteFollower(reject));
+  deletable.map(async (user) => await deleteFollower(user));
 })();
