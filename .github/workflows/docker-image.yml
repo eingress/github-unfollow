@@ -1,4 +1,4 @@
-name: ci
+name: CI
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
 jobs:
   docker:
     runs-on: ubuntu-latest
-    
+
     steps:
       -
         name: Set up QEMU
@@ -31,5 +31,5 @@ jobs:
         with:
           path: docker.env
       -
-        name: Build and push
+        name: Build and Push
         run: make release
