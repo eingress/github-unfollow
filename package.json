@@ -27,15 +27,15 @@
   },
   "devDependencies": {
     "@babel/cli": "7.23.0",
-    "@babel/core": "7.23.0",
+    "@babel/core": "7.23.2",
     "@babel/eslint-parser": "7.22.15",
     "@babel/node": "7.22.19",
-    "@babel/preset-env": "7.22.20",
-    "eslint": "8.50.0",
+    "@babel/preset-env": "7.23.2",
+    "eslint": "8.51.0",
     "eslint-config-prettier": "9.0.0",
-    "eslint-plugin-prettier": "5.0.0",
+    "eslint-plugin-prettier": "5.0.1",
     "nodemon": "3.0.1",
     "prettier": "3.0.3",
-    "rimraf": "5.0.1"
+    "rimraf": "5.0.5"
   }
 }
