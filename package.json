@@ -23,7 +23,7 @@
     "test:watch": "node --test --watch tests/*"
   },
   "dependencies": {
-    "dotenv": "16.4.2"
+    "dotenv": "16.4.5"
   },
   "devDependencies": {
     "@babel/cli": "7.23.9",
