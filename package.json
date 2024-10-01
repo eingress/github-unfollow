@@ -31,7 +31,7 @@
     "@babel/eslint-parser": "7.25.1",
     "@babel/node": "7.25.0",
     "@babel/preset-env": "7.25.4",
-    "eslint": "9.11.0",
+    "eslint": "9.11.1",
     "eslint-config-prettier": "9.1.0",
     "eslint-plugin-prettier": "5.2.1",
     "nodemon": "3.1.7",
