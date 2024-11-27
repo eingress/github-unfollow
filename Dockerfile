@@ -1,11 +1,11 @@
 
 ARG ALPINE_IMAGE_VERSION
 
-FROM alpine:$ALPINE_IMAGE_VERSION as alpine-node
+FROM alpine:${ALPINE_IMAGE_VERSION:-3.20} AS alpine-node
 
 RUN apk --update --no-cache add nodejs yarn
 
-FROM alpine-node as build
+FROM alpine-node AS build
 
 WORKDIR /build
 
@@ -14,9 +14,9 @@ COPY . .
 RUN yarn install && \
 	yarn build
 
-FROM alpine:$ALPINE_IMAGE_VERSION as release
+FROM alpine:${ALPINE_IMAGE_VERSION:-3.20} AS release
 
-LABEL maintainer "Scott Mathieson <scott@eingress.io>"
+LABEL maintainer="Scott Mathieson <scott@eingress.io>"
 
 WORKDIR /app
 
