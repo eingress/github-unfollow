@@ -23,19 +23,19 @@
     "test:watch": "node --test --watch tests/*"
   },
   "dependencies": {
-    "dotenv": "17.2.3"
+    "dotenv": "17.2.4"
   },
   "devDependencies": {
-    "@babel/cli": "7.28.3",
-    "@babel/core": "7.28.5",
-    "@babel/eslint-parser": "7.28.5",
-    "@babel/node": "7.28.0",
-    "@babel/preset-env": "7.28.5",
-    "eslint": "9.39.2",
+    "@babel/cli": "7.28.6",
+    "@babel/core": "7.29.0",
+    "@babel/eslint-parser": "7.28.6",
+    "@babel/node": "7.29.0",
+    "@babel/preset-env": "7.29.0",
+    "eslint": "10.0.0",
     "eslint-config-prettier": "10.1.8",
-    "eslint-plugin-prettier": "5.5.4",
+    "eslint-plugin-prettier": "5.5.5",
     "nodemon": "3.1.11",
-    "prettier": "3.7.4",
+    "prettier": "3.8.1",
     "rimraf": "6.1.2"
   },
   "packageManager": "yarn@1.22.19+sha1.4ba7fc5c6e704fce2066ecbfb0b0d8976fe62447"
