@@ -1,6 +1,6 @@
 {
   "name": "github-unfollow",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Unfollow github users that don't follow you back.",
   "repository": "https://github.com/eingress/github-unfollow.git",
   "author": "Scott Mathieson <scott@eingress.io>",
