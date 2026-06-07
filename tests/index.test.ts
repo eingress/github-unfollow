@@ -12,14 +12,14 @@ type WriteSpy = ReturnType<typeof spyOn<typeof process.stdout, 'write'>>;
 type ExitSpy = ReturnType<typeof spyOn<typeof process, 'exit'>>;
 
 const makeFetch = (body: unknown, linkHeader: string | null = null) =>
-  ((() =>
+  (() =>
     Promise.resolve({
       json: () => Promise.resolve(body),
       headers: { get: (name: string) => (name === 'link' ? linkHeader : null) },
-    } as unknown as Response)) as unknown as typeof fetch);
+    } as unknown as Response)) as unknown as typeof fetch;
 
 const rejectFetch = (message: string) =>
-  ((() => Promise.reject(new Error(message))) as unknown as typeof fetch);
+  (() => Promise.reject(new Error(message))) as unknown as typeof fetch;
 
 const nextLink = (page: number) =>
   `<https://api.github.com/user/followers?page=${page}>; rel="next"`;
@@ -50,7 +50,9 @@ describe('getFollowers', () => {
   beforeEach(() => {
     fetchSpy = spyOn(globalThis, 'fetch');
     stderrSpy = spyOn(process.stderr, 'write').mockImplementation(() => true);
-    exitSpy = spyOn(process, 'exit').mockImplementation((() => {}) as () => never);
+    exitSpy = spyOn(process, 'exit').mockImplementation(
+      (() => {}) as () => never,
+    );
   });
 
   afterEach(() => {
@@ -60,7 +62,9 @@ describe('getFollowers', () => {
   });
 
   test('returns logins from a single page', async () => {
-    fetchSpy.mockImplementation(makeFetch([{ login: 'alice' }, { login: 'bob' }]));
+    fetchSpy.mockImplementation(
+      makeFetch([{ login: 'alice' }, { login: 'bob' }]),
+    );
     expect(await getFollowers()).toEqual(['alice', 'bob']);
   });
 
@@ -84,7 +88,9 @@ describe('getFollowers', () => {
   test('writes to stderr and exits on fetch failure', async () => {
     fetchSpy.mockImplementation(rejectFetch('network error'));
     await getFollowers();
-    expect(stderrSpy).toHaveBeenCalledWith(expect.stringContaining('network error'));
+    expect(stderrSpy).toHaveBeenCalledWith(
+      expect.stringContaining('network error'),
+    );
     expect(exitSpy).toHaveBeenCalledWith(1);
   });
 });
@@ -97,7 +103,9 @@ describe('getFollowees', () => {
   beforeEach(() => {
     fetchSpy = spyOn(globalThis, 'fetch');
     stderrSpy = spyOn(process.stderr, 'write').mockImplementation(() => true);
-    exitSpy = spyOn(process, 'exit').mockImplementation((() => {}) as () => never);
+    exitSpy = spyOn(process, 'exit').mockImplementation(
+      (() => {}) as () => never,
+    );
   });
 
   afterEach(() => {
@@ -107,7 +115,9 @@ describe('getFollowees', () => {
   });
 
   test('returns logins from a single page', async () => {
-    fetchSpy.mockImplementation(makeFetch([{ login: 'carol' }, { login: 'dave' }]));
+    fetchSpy.mockImplementation(
+      makeFetch([{ login: 'carol' }, { login: 'dave' }]),
+    );
     expect(await getFollowees()).toEqual(['carol', 'dave']);
   });
 
@@ -131,7 +141,9 @@ describe('getFollowees', () => {
   test('writes to stderr and exits on fetch failure', async () => {
     fetchSpy.mockImplementation(rejectFetch('network error'));
     await getFollowees();
-    expect(stderrSpy).toHaveBeenCalledWith(expect.stringContaining('network error'));
+    expect(stderrSpy).toHaveBeenCalledWith(
+      expect.stringContaining('network error'),
+    );
     expect(exitSpy).toHaveBeenCalledWith(1);
   });
 });
@@ -146,7 +158,9 @@ describe('followUser', () => {
     fetchSpy = spyOn(globalThis, 'fetch');
     stdoutSpy = spyOn(process.stdout, 'write').mockImplementation(() => true);
     stderrSpy = spyOn(process.stderr, 'write').mockImplementation(() => true);
-    exitSpy = spyOn(process, 'exit').mockImplementation((() => {}) as () => never);
+    exitSpy = spyOn(process, 'exit').mockImplementation(
+      (() => {}) as () => never,
+    );
   });
 
   afterEach(() => {
@@ -174,7 +188,9 @@ describe('followUser', () => {
   test('writes to stderr and exits on fetch failure', async () => {
     fetchSpy.mockImplementation(rejectFetch('network error'));
     await followUser('alice');
-    expect(stderrSpy).toHaveBeenCalledWith(expect.stringContaining('network error'));
+    expect(stderrSpy).toHaveBeenCalledWith(
+      expect.stringContaining('network error'),
+    );
     expect(exitSpy).toHaveBeenCalledWith(1);
   });
 });
@@ -189,7 +205,9 @@ describe('unfollowUser', () => {
     fetchSpy = spyOn(globalThis, 'fetch');
     stdoutSpy = spyOn(process.stdout, 'write').mockImplementation(() => true);
     stderrSpy = spyOn(process.stderr, 'write').mockImplementation(() => true);
-    exitSpy = spyOn(process, 'exit').mockImplementation((() => {}) as () => never);
+    exitSpy = spyOn(process, 'exit').mockImplementation(
+      (() => {}) as () => never,
+    );
   });
 
   afterEach(() => {
@@ -217,7 +235,9 @@ describe('unfollowUser', () => {
   test('writes to stderr and exits on fetch failure', async () => {
     fetchSpy.mockImplementation(rejectFetch('network error'));
     await unfollowUser('alice');
-    expect(stderrSpy).toHaveBeenCalledWith(expect.stringContaining('network error'));
+    expect(stderrSpy).toHaveBeenCalledWith(
+      expect.stringContaining('network error'),
+    );
     expect(exitSpy).toHaveBeenCalledWith(1);
   });
 });
