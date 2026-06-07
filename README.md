@@ -1,4 +1,4 @@
-# Github Unfollow
+# GitHub Unfollow
 
 A Bun script to follow people who follow you, and unfollow people who no longer follow you back.
 
