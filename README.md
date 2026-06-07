@@ -23,11 +23,11 @@ bun start
 ### Docker
 
 ```sh
-GITHUB_API_TOKEN="Your API token" docker run -it eingressio/github-unfollow
+GITHUB_API_TOKEN="Your API token" docker run -it ghcr.io/eingress/github-unfollow
 ```
 
 or
 
 ```sh
-docker run -it -v /path/to/.env:/app/.env eingressio/github-unfollow
+docker run -it -v /path/to/.env:/app/.env ghcr.io/eingress/github-unfollow
 ```
