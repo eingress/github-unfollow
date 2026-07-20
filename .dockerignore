@@ -1,10 +1,10 @@
 .github/
-node_modules/
 
+.env
 .gitignore
-.prettierrc.json
-eslint.config.js
+docker.env
+example.env
+LICENSE
 Makefile
 README.md
-example.env
-tsconfig.json
+*_test.go

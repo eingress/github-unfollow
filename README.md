@@ -1,6 +1,6 @@
 # GitHub Unfollow
 
-A Bun script to follow people who follow you, and unfollow people who no longer follow you back.
+A Go program to follow people who follow you, and unfollow people who no longer follow you back.
 
 ## Usage
 
@@ -17,17 +17,23 @@ Then run it
 ### Shell
 
 ```sh
-bun start
+go run .
+```
+
+Run the tests with:
+
+```sh
+go test ./...
 ```
 
 ### Docker
 
 ```sh
-GITHUB_API_TOKEN="Your API token" docker run -it ghcr.io/eingress/github-unfollow
+docker run -it -e GITHUB_API_TOKEN="Your API token" ghcr.io/eingress/github-unfollow
 ```
 
 or
 
 ```sh
-docker run -it -v /path/to/.env:/app/.env ghcr.io/eingress/github-unfollow
+docker run -it -v /path/to/.env:/.env ghcr.io/eingress/github-unfollow
 ```

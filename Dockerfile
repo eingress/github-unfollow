@@ -1,15 +1,26 @@
-ARG BUN_VERSION
+ARG GO_IMAGE_VERSION
 
-FROM oven/bun:${BUN_VERSION:-alpine}
+FROM golang:${GO_IMAGE_VERSION:-alpine} AS builder
 
 LABEL maintainer="Scott Mathieson <scott@eingress.io>"
 
-WORKDIR /app
+RUN apk add --no-cache ca-certificates
 
-COPY package.json bun.lock* ./
-RUN bun install --production
+RUN mkdir /build
 
-COPY src/ ./src/
+COPY go.mod go.sum /build/
+COPY *.go /build/
 
-ENTRYPOINT ["bun"]
-CMD ["run", "src/index.ts"]
+WORKDIR /build
+
+RUN go env -w CGO_ENABLED=0 && \
+    go build -a -o main .
+
+FROM scratch
+
+WORKDIR /
+
+COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
+COPY --from=builder /build/main .
+
+ENTRYPOINT ["/main"]
