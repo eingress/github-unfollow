@@ -14,7 +14,24 @@ GITHUB_API_TOKEN=# Your API token
 
 Then run it
 
+### Install
+
+Install the binary onto your `PATH` with:
+
+```sh
+go install github.com/eingress/github-unfollow@latest
+```
+
+This puts a `github-unfollow` binary in `$(go env GOPATH)/bin` (or `$(go env GOBIN)` if set). Ensure that directory is on your `PATH`, then run it from a directory containing your _.env_ file, or with the token exported:
+
+```sh
+export GITHUB_API_TOKEN=# Your API token
+github-unfollow
+```
+
 ### Shell
+
+To run directly from a checkout without installing:
 
 ```sh
 go run .
